@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'">
+<title>جارٍ التحويل...</title>
+<style>body{font-family:system-ui,sans-serif;padding:24px;text-align:center;color:#334155}</style>
+</head>
+<body>
+<p>جارٍ فتح نموذج التصنيف الخاص بك...</p>
+<noscript><p>يلزم تفعيل JavaScript لفتح صفحة المستخدم الخاصة بك.</p></noscript>
+<script>
+"use strict";
+(function () {
+  var REPO = "/arabic-tweet-annotation-v2/";
+  var p = location.pathname;
+  var base = (p === "/arabic-tweet-annotation-v2" || p.indexOf(REPO) === 0) ? REPO : "/";
+  var rest = (p.indexOf(base) === 0 ? p.slice(base.length) : "").replace(/^\/+|\/+$/g, "");
+  var sp = new URLSearchParams(location.search);
+  if (rest && !sp.has("username") && !sp.has("user") && !sp.has("u")) {
+    var seg = rest.split("/")[0];
+    try { sp.set("username", decodeURIComponent(seg)); } catch (e) { sp.set("username", seg); }
+  }
+  var qs = sp.toString();
+  location.replace(base + (qs ? "?" + qs : "") + location.hash);
+})();
+</script>
+</body>
+</html>
